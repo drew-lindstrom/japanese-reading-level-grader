@@ -29,7 +29,15 @@ def get_kanji_dict(kanji_dict):
         kanji_dict[name] = kanji_list
 
 
-kanji_dict = {}
+def swap_key_and_value(kanji_dict):
+    new_dict = {}
+    for key in kanji_dict.keys():
+        for character in kanji_dict[key]:
+            new_dict[character] = key
 
+    return new_dict
+
+
+kanji_dict = {}
 get_kanji_dict(kanji_dict)
-print(kanji_dict)
+new_dict = swap_key_and_value(kanji_dict)
