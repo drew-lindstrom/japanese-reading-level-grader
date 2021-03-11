@@ -15,15 +15,20 @@ page = requests.get(url)
 soup = BeautifulSoup(page.content, "html.parser")
 
 for character in soup.text:
-    if character in kanji_dict["JLPT N5"]:
+    try:
+        level = kanji_dict[character]
+    except:
+        continue
+
+    if level == "JLPT N5":
         N5 += 1
-    if character in kanji_dict["JLPT N4"]:
+    if level == "JLPT N4":
         N4 += 1
-    if character in kanji_dict["JLPT N3"]:
+    if level == "JLPT N3":
         N3 += 1
-    if character in kanji_dict["JLPT N2"]:
+    if level == "JLPT N2":
         N2 += 1
-    if character in kanji_dict["JLPT N1"]:
+    if level == "JLPT N1":
         N1 += 1
 
 print(f"Number of JLPT N5 Characters: {N5}")
