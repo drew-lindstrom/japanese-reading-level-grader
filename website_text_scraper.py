@@ -44,6 +44,14 @@ def parse_text(soup):
             N1_unique.add(character)
 
 
+def print_count_unique(N5_unique, N4_unique, N3_unique, N2_unique, N1_unique):
+    print(f"Number of unique JLPT N5 Characters: {N5_unique}")
+    print(f"Number of unique JLPT N4 Characters: {N4_unique}")
+    print(f"Number of unique JLPT N3 Characters: {N3_unique}")
+    print(f"Number of unique JLPT N2 Characters: {N2_unique}")
+    print(f"Number of unique JLPT N1 Characters: {N1_unique}")
+
+
 print(f"Number of JLPT N5 Characters: {N5}")
 print(f"Number of JLPT N4 Characters: {N4}")
 print(f"Number of JLPT N3 Characters: {N3}")
