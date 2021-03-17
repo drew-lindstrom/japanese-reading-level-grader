@@ -39,6 +39,13 @@ def swap_key_and_value(kanji_dict):
     return new_dict
 
 
+def create_table():
+    mycursor.execute("CREATE DATABASE kanji_database")
+    mycursor.execute(
+        "CREATE TABLE Kanji (kanji CHAR, level STRING, kanjiID int PRIMARY KEY AUTO_INCREMENT)"
+    )
+
+
 kanji_dict = {}
 get_kanji_dict(kanji_dict)
 new_dict = swap_key_and_value(kanji_dict)
@@ -50,3 +57,5 @@ db = mysql.connector.connect(
     database="kanji_database",
     auth_plugin="mysql_native_password",
 )
+
+mycursor = db.cursor
