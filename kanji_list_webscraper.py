@@ -1,7 +1,7 @@
 import requests
 import pprint
 from bs4 import BeautifulSoup
-import mysql.connector
+import sqlite3
 
 
 def get_kanji_dict(kanji_dict):
@@ -40,22 +40,13 @@ def swap_key_and_value(kanji_dict):
 
 
 def create_table():
-    mycursor.execute("CREATE DATABASE kanji_database")
-    mycursor.execute(
-        "CREATE TABLE Kanji (kanji CHAR, level STRING, kanjiID int PRIMARY KEY AUTO_INCREMENT)"
-    )
+    mycursor.execute("CREATE TABLE kanji_level (kanji text, level text)")
 
 
 kanji_dict = {}
 get_kanji_dict(kanji_dict)
 new_dict = swap_key_and_value(kanji_dict)
 
-db = mysql.connector.connect(
-    host="localhost",
-    user="",
-    passwd="",
-    database="kanji_database",
-    auth_plugin="mysql_native_password",
-)
+db = sqlite3.connect("kanji_level.db")
 
-mycursor = db.cursor
+mycursor = db.cursor()
