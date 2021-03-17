@@ -1,6 +1,7 @@
 import requests
 import pprint
 from bs4 import BeautifulSoup
+import mysql.connector
 
 
 def get_kanji_dict(kanji_dict):
@@ -41,3 +42,11 @@ def swap_key_and_value(kanji_dict):
 kanji_dict = {}
 get_kanji_dict(kanji_dict)
 new_dict = swap_key_and_value(kanji_dict)
+
+db = mysql.connector.connect(
+    host="localhost",
+    user="",
+    passwd="",
+    database="kanji_database",
+    auth_plugin="mysql_native_password",
+)
