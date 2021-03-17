@@ -47,13 +47,19 @@ def create_table():
     mycursor.execute("CREATE TABLE kanji_list (kanji text, level text)")
 
 
+def update_table(kanji_list):
+    mycursor.executemany("INSERT INTO kanji_list VALUES (?, ?)", kanji_list)
+    db.commit()
+
+
 kanji_dict = {}
 kanji_list = []
+db = sqlite3.connect("kanji.db")
+
 get_kanji_dict(kanji_dict)
 new_dict = swap_key_and_value(kanji_dict)
 create_kanji_list(new_dict, kanji_list)
 
-db = sqlite3.connect("kanji.db")
-
 mycursor = db.cursor()
 # create_table()
+# update_table(kanji_list)
