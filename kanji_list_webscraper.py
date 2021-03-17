@@ -35,18 +35,25 @@ def swap_key_and_value(kanji_dict):
     for key in kanji_dict.keys():
         for character in kanji_dict[key]:
             new_dict[character] = key
-
     return new_dict
 
 
+def create_kanji_list(new_dict, kanji_list):
+    for key in new_dict:
+        kanji_list.append((key, new_dict[key]))
+
+
 def create_table():
-    mycursor.execute("CREATE TABLE kanji_level (kanji text, level text)")
+    mycursor.execute("CREATE TABLE kanji_list (kanji text, level text)")
 
 
 kanji_dict = {}
+kanji_list = []
 get_kanji_dict(kanji_dict)
 new_dict = swap_key_and_value(kanji_dict)
+create_kanji_list(new_dict, kanji_list)
 
-db = sqlite3.connect("kanji_level.db")
+db = sqlite3.connect("kanji.db")
 
 mycursor = db.cursor()
+# create_table()
