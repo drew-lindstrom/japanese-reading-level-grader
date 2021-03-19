@@ -1,25 +1,16 @@
 from bs4 import BeautifulSoup
 from kanji_dict import kanji_dict
 import requests
-
-unique_kanji = {}
-unique_kanji["N5"] = set()
-unique_kanji["N4"] = set()
-unique_kanji["N3"] = set()
-unique_kanji["N2"] = set()
-unique_kanji["N1"] = set()
-kanji_count = [0, 0, 0, 0, 0]
-
-url = "https://www3.nhk.or.jp/nhkworld/ja/"
-
-page = requests.get(url)
-soup = BeautifulSoup(page.content, "html.parser")
+import sqlite3
 
 
 def parse_text(soup, kanji_count, unique_kanji):
     for character in soup.text:
         try:
-            level = kanji_dict[character]
+            # Need to fix parameter input.
+            mycursor.execute("SELECT * FROM kanji_list WHERE kanji=?", character)
+            result = mycursor.fetchone()
+            level = result[1].decode("utf-8")
         except:
             continue
 
@@ -57,6 +48,18 @@ def print_count_unique(unique_kanji):
     print(f"Number of Unique JLPT N1 Characters: {len(unique_kanji['N1'])}")
     print()
 
+
+db = sqlite3.connect("kanji.db")
+db.text_factory = bytes
+mycursor = db.cursor()
+
+unique_kanji = {"N5": set(), "N4": set(), "N3": set(), "N2": set(), "N1": set()}
+kanji_count = [0, 0, 0, 0, 0]
+
+url = "https://www3.nhk.or.jp/nhkworld/ja/"
+
+page = requests.get(url)
+soup = BeautifulSoup(page.content, "html.parser")
 
 parse_text(soup, kanji_count, unique_kanji)
 print_count(kanji_count)
