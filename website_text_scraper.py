@@ -56,7 +56,8 @@ mycursor = db.cursor()
 unique_kanji = {"N5": set(), "N4": set(), "N3": set(), "N2": set(), "N1": set()}
 kanji_count = [0, 0, 0, 0, 0]
 
-url = "https://www3.nhk.or.jp/nhkworld/ja/"
+print("Enter URL: ")
+url = input()
 
 page = requests.get(url)
 soup = BeautifulSoup(page.content, "html.parser")
