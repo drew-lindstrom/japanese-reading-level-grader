@@ -6,21 +6,24 @@ import sqlite3
 def get_kanji(url, kanji_count, unique_kanji):
     db = sqlite3.connect("kanji.db")
     db.text_factory = bytes
+    mycursor = db.cursor()
 
-    unique_kanji = unique_kanji
     page = requests.get(url)
     soup = BeautifulSoup(page.content, "html.parser")
 
-    parse_text(soup, kanji_count, unique_kanji)
+    parse_text(mycursor, soup, kanji_count, unique_kanji)
 
 
-def parse_text(soup, kanji_count, unique_kanji):
+def parse_text(mycursor, soup, kanji_count, unique_kanji):
 
     for character in soup.text:
         try:
             mycursor.execute("SELECT * FROM kanji_list WHERE kanji=?", character)
             result = mycursor.fetchone()
+            print("result")
             level = result[1].decode("utf-8")
+            print("level")
+            print("sucess")
         except:
             continue
 

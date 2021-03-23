@@ -1,4 +1,4 @@
-from website_text_scraper import parse_text
+from website_text_scraper import parse_text, get_kanji
 
 
 def print_count(kanji_count):
@@ -19,8 +19,13 @@ def print_count_unique(unique_kanji):
     print()
 
 
+unique_kanji = {"N5": set(), "N4": set(), "N3": set(), "N2": set(), "N1": set()}
+kanji_count = [0, 0, 0, 0, 0]
+
 print("Enter URL: ")
 url = input()
+print()
 
+get_kanji(url, kanji_count, unique_kanji)
 print_count(kanji_count)
 print_count_unique(unique_kanji)
