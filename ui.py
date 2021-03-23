@@ -1,22 +1,26 @@
-import PySimpleGUI as sg
+from website_text_scraper import parse_text
 
-sg.theme("BluePurple")
 
-layout = [
-    [sg.Text("Your typed chars appear here:"), sg.Text(size=(15, 1), key="-OUTPUT-")],
-    [sg.Input(key="-IN-")],
-    [sg.Button("Show"), sg.Button("Exit")],
-]
+def print_count(kanji_count):
+    print(f"Number of JLPT N5 Characters: {kanji_count[0]}")
+    print(f"Number of JLPT N4 Characters: {kanji_count[1]}")
+    print(f"Number of JLPT N3 Characters: {kanji_count[2]}")
+    print(f"Number of JLPT N2 Characters: {kanji_count[3]}")
+    print(f"Number of JLPT N1 Characters: {kanji_count[4]}")
+    print()
 
-window = sg.Window("Pattern 2B", layout)
 
-while True:  # Event Loop
-    event, values = window.read()
-    print(event, values)
-    if event == sg.WIN_CLOSED or event == "Exit":
-        break
-    if event == "Show":
-        # Update the "output" text element to be the value of "input" element
-        window["-OUTPUT-"].update(values["-IN-"])
+def print_count_unique(unique_kanji):
+    print(f"Number of Unique JLPT N5 Characters: {len(unique_kanji['N5'])}")
+    print(f"Number of Unique JLPT N4 Characters: {len(unique_kanji['N4'])}")
+    print(f"Number of Unique JLPT N3 Characters: {len(unique_kanji['N3'])}")
+    print(f"Number of Unique JLPT N2 Characters: {len(unique_kanji['N2'])}")
+    print(f"Number of Unique JLPT N1 Characters: {len(unique_kanji['N1'])}")
+    print()
 
-window.close()
+
+print("Enter URL: ")
+url = input()
+
+print_count(kanji_count)
+print_count_unique(unique_kanji)
