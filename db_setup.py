@@ -43,12 +43,18 @@ def create_kanji_list(new_dict, kanji_list):
         kanji_list.append((key, new_dict[key]))
 
 
-def create_table():
-    mycursor.execute("CREATE TABLE kanji_list (kanji text, level text)")
+def create_prev_search_table():
+    mycursor.execute(
+        "CREATE TABLE prev_search (url text, JLPT_5 int, JLPT_4 int, JLPT_3 int, JLPT_2 int, JLPT_1 int)"
+    )
 
 
-def update_table(kanji_list):
-    mycursor.executemany("INSERT INTO kanji_list VALUES (?, ?)", kanji_list)
+def create_kanji_table():
+    mycursor.execute("CREATE TABLE kanji_table (kanji text, level text)")
+
+
+def update_kanji_table(kanji_list):
+    mycursor.executemany("INSERT INTO kanji_table VALUES (?, ?)", kanji_list)
     db.commit()
 
 
@@ -58,10 +64,11 @@ kanji_list = []
 db = sqlite3.connect("kanji.db")
 mycursor = db.cursor()
 
+
 get_kanji_dict(kanji_dict)
 new_dict = swap_key_and_value(kanji_dict)
 create_kanji_list(new_dict, kanji_list)
 
-
-# create_table()
-# update_table(kanji_list)
+# create_prev_search_table()
+# create_kanji_table()
+update_kanji_table(kanji_list)
