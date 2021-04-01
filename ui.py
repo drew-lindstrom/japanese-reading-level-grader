@@ -1,4 +1,6 @@
 from website_text_scraper import parse_text, get_kanji
+from known_kanji import get_known_kanji
+from prev_serach import update_prev_search_db
 
 
 def print_count(kanji_count, total):
@@ -59,7 +61,12 @@ url = input()
 print()
 
 get_kanji(url, kanji_count, unique_kanji)
+update_prev_search_db(url, kanji_count)
 total = get_total(kanji_count)
 unique_total = get_unique_total(unique_kanji)
 print_count(kanji_count, total)
 print_count_unique(unique_kanji, unique_total)
+
+known_kanji = get_known_kanji()
+for n in known_kanji:
+    print(n)
