@@ -50,12 +50,19 @@ def get_unique_total(unique_kanji):
 
     return unique_total
 
+def reset_unqiue_kanji:
+    unique_kanji = {"N5": set(), "N4": set(), "N3": set(), "N2": set(), "N1": set()}
+
+def reset_kanji_count:
+    kanji_count = [0, 0, 0, 0, 0]
 
 unique_kanji = {"N5": set(), "N4": set(), "N3": set(), "N2": set(), "N1": set()}
 kanji_count = [0, 0, 0, 0, 0]
 
 # TODO: Message for websites without any kanji
-
+# TODO: prev_serach db shouldn't update with websites without kanji
+# TODO: unique_kanji and kanji_count need to reset with each URL search
+# TODO: Rounding error
 
 def main():
     while True:
@@ -70,13 +77,14 @@ def main():
             continue
         break
 
-    get_kanji(url, kanji_count, unique_kanji)
     update_prev_search_db(url, kanji_count)
     total = get_total(kanji_count)
     unique_total = get_unique_total(unique_kanji)
     print_count(kanji_count, total)
     print_unique_count(unique_kanji, unique_total)
-
+    print(
+        "(1) Print Reading Ability of URL, (2) Print Unknown Kanji from URL, (3) Enter New URL"
+    )
     # known_kanji = get_known_kanji()
     # for n in known_kanji:
     #     print(n)
