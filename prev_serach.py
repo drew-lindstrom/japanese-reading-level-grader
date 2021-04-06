@@ -21,3 +21,12 @@ def update_prev_search_db(url, kanji_count):
             i,
         )
     db.commit()
+
+
+def get_all_time_total(url):
+    db = sqlite3.connect("kanji.db")
+    mycursor = db.cursor()
+    mycursor.execute(
+        "SELECT SUM(JLPT_5), SUM(JLPT_4), SUM(JLPT_3), SUM(JLPT_2), SUM(JLPT_1) FROM prev_search"
+    )
+    return list(mycursor)

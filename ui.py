@@ -13,7 +13,7 @@ def print_count(kanji_count, total):
     print()
 
 
-def print_count_unique(unique_kanji, unique_total):
+def print_unique_count(unique_kanji, unique_total):
     print(f"Total Number of Unique Characters: {unique_total}")
     print(
         f"N5: {len(unique_kanji['N5'])} ({round((len(unique_kanji['N5'])/unique_total), 4)*100}%)"
@@ -65,7 +65,7 @@ update_prev_search_db(url, kanji_count)
 total = get_total(kanji_count)
 unique_total = get_unique_total(unique_kanji)
 print_count(kanji_count, total)
-print_count_unique(unique_kanji, unique_total)
+print_unique_count(unique_kanji, unique_total)
 
 known_kanji = get_known_kanji()
 for n in known_kanji:
