@@ -54,19 +54,33 @@ def get_unique_total(unique_kanji):
 unique_kanji = {"N5": set(), "N4": set(), "N3": set(), "N2": set(), "N1": set()}
 kanji_count = [0, 0, 0, 0, 0]
 
-# TODO: Error handling for invalid URL
+# TODO: Message for websites without any kanji
 
-print("Enter URL: ")
-url = input()
-print()
 
-get_kanji(url, kanji_count, unique_kanji)
-update_prev_search_db(url, kanji_count)
-total = get_total(kanji_count)
-unique_total = get_unique_total(unique_kanji)
-print_count(kanji_count, total)
-print_unique_count(unique_kanji, unique_total)
+def main():
+    while True:
+        print("Enter URL: ")
+        url = input()
+        print()
+        try:
+            get_kanji(url, kanji_count, unique_kanji)
+        except Exception:
+            print("Invalid URL")
+            print()
+            continue
+        break
 
-known_kanji = get_known_kanji()
-for n in known_kanji:
-    print(n)
+    get_kanji(url, kanji_count, unique_kanji)
+    update_prev_search_db(url, kanji_count)
+    total = get_total(kanji_count)
+    unique_total = get_unique_total(unique_kanji)
+    print_count(kanji_count, total)
+    print_unique_count(unique_kanji, unique_total)
+
+    # known_kanji = get_known_kanji()
+    # for n in known_kanji:
+    #     print(n)
+
+
+if __name__ == "__main__":
+    main()
