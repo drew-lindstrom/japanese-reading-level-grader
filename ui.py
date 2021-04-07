@@ -76,8 +76,6 @@ def reset_kanji_count():
 unique_kanji = {"N5": set(), "N4": set(), "N3": set(), "N2": set(), "N1": set()}
 kanji_count = [0, 0, 0, 0, 0]
 
-# TODO: Message for websites without any kanji
-# TODO: prev_serach db shouldn't update with websites without kanji
 # TODO: unique_kanji and kanji_count need to reset with each URL search
 # TODO: Rounding error
 
@@ -90,6 +88,16 @@ def main():
             print()
             try:
                 get_kanji(url, kanji_count, unique_kanji)
+                if (
+                    kanji_count[0] == 0
+                    and kanji_count[1] == 0
+                    and kanji_count[2] == 0
+                    and kanji_count[3] == 0
+                    and kanji_count[4] == 0
+                ):
+                    print("URL does not contain any kanji.")
+                    print()
+                    continue
             except Exception:
                 print("Invalid URL")
                 print()
