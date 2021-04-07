@@ -23,7 +23,7 @@ def update_prev_search_db(url, kanji_count):
     db.commit()
 
 
-def get_all_time_total(url):
+def get_all_time_total():
     db = sqlite3.connect("kanji.db")
     mycursor = db.cursor()
     mycursor.execute(
