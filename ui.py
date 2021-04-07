@@ -65,18 +65,22 @@ def get_unique_total(unique_kanji):
     return unique_total
 
 
-def reset_unqiue_kanji():
-    unique_kanji = {"N5": set(), "N4": set(), "N3": set(), "N2": set(), "N1": set()}
+def reset_unique_kanji(unique_kanji):
+    unique_kanji["N5"] = set()
+    unique_kanji["N4"] = set()
+    unique_kanji["N3"] = set()
+    unique_kanji["N2"] = set()
+    unique_kanji["N1"] = set()
 
 
-def reset_kanji_count():
-    kanji_count = [0, 0, 0, 0, 0]
+def reset_kanji_count(kanji_count):
+    for level in range(len(kanji_count)):
+        kanji_count[level] = 0
 
 
 unique_kanji = {"N5": set(), "N4": set(), "N3": set(), "N2": set(), "N1": set()}
 kanji_count = [0, 0, 0, 0, 0]
 
-# TODO: unique_kanji and kanji_count need to reset with each URL search
 # TODO: Rounding error
 
 
@@ -87,6 +91,9 @@ def main():
             url = input()
             print()
             try:
+                reset_unique_kanji(unique_kanji)
+                reset_kanji_count(kanji_count)
+
                 get_kanji(url, kanji_count, unique_kanji)
                 if (
                     kanji_count[0] == 0

@@ -11,19 +11,15 @@ def get_kanji(url, kanji_count, unique_kanji):
     page = requests.get(url)
     soup = BeautifulSoup(page.content, "html.parser")
 
-    parse_text(mycursor, soup, kanji_count, unique_kanji)
+    return parse_text(mycursor, soup, kanji_count, unique_kanji)
 
 
 def parse_text(mycursor, soup, kanji_count, unique_kanji):
-
     for character in soup.text:
         try:
-            mycursor.execute("SELECT * FROM kanji_list WHERE kanji=?", character)
+            mycursor.execute("SELECT * FROM kanji_table WHERE kanji=?", character)
             result = mycursor.fetchone()
-            print("result")
             level = result[1].decode("utf-8")
-            print("level")
-            print("sucess")
         except:
             continue
 
