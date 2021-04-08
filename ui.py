@@ -33,6 +33,24 @@ def print_unique_count(unique_kanji, unique_total):
     print()
 
 
+def print_reading_ability(kanji_count, total, known_kanji_count):
+    print(
+        f"N5: {known_kanji_count[0]} out of {kanji_count[0]} known. ({round((known_kanji_count[0]/kanji_count[0]), 4)* 100}%"
+    )
+    print(
+        f"N5: {known_kanji_count[1]} out of {kanji_count[1]} known. ({round((known_kanji_count[1]/kanji_count[1]), 4)* 100}%"
+    )
+    print(
+        f"N5: {known_kanji_count[2]} out of {kanji_count[2]} known. ({round((known_kanji_count[2]/kanji_count[2]), 4)* 100}%"
+    )
+    print(
+        f"N5: {known_kanji_count[3]} out of {kanji_count[3]} known. ({round((known_kanji_count[3]/kanji_count[3]), 4)* 100}%"
+    )
+    print(
+        f"N5: {known_kanji_count[4]} out of {kanji_count[4]} known. ({round((known_kanji_count[4]/kanji_count[4]), 4)* 100}%"
+    )
+
+
 def print_all_time_total(all_time_total):
     total = 0
     for level in all_time_total[0]:
