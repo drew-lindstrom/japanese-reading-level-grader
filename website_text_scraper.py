@@ -3,7 +3,7 @@ import requests
 import sqlite3
 
 
-def get_kanji(url, kanji_count, unique_kanji):
+def get_kanji(url, kanji_count, unique_kanji, known_kanji, known_kanji_count):
     db = sqlite3.connect("kanji.db")
     db.text_factory = bytes
     mycursor = db.cursor()
@@ -11,10 +11,14 @@ def get_kanji(url, kanji_count, unique_kanji):
     page = requests.get(url)
     soup = BeautifulSoup(page.content, "html.parser")
 
-    return parse_text(mycursor, soup, kanji_count, unique_kanji)
+    return parse_text(
+        mycursor, soup, kanji_count, unique_kanji, known_kanji, known_kanji_count
+    )
 
 
-def parse_text(mycursor, soup, kanji_count, unique_kanji):
+def parse_text(
+    mycursor, soup, kanji_count, unique_kanji, known_kanji, known_kanji_count
+):
     for character in soup.text:
         try:
             mycursor.execute("SELECT * FROM kanji_table WHERE kanji=?", character)
@@ -25,16 +29,26 @@ def parse_text(mycursor, soup, kanji_count, unique_kanji):
 
         if level == "JLPT N5":
             kanji_count[0] += 1
+            if character in known_kanji:
+                known_kanji_count[0] += 1
             unique_kanji["N5"].add(character)
         if level == "JLPT N4":
             kanji_count[1] += 1
+            if character in known_kanji:
+                known_kanji_count[1] += 1
             unique_kanji["N4"].add(character)
         if level == "JLPT N3":
             kanji_count[2] += 1
+            if character in known_kanji:
+                known_kanji_count[2] += 1
             unique_kanji["N3"].add(character)
         if level == "JLPT N2":
             kanji_count[3] += 1
+            if character in known_kanji:
+                known_kanji_count[3] += 1
             unique_kanji["N2"].add(character)
         if level == "JLPT N1":
             kanji_count[4] += 1
+            if character in known_kanji:
+                known_kanji_count[4] += 1
             unique_kanji["N1"].add(character)
