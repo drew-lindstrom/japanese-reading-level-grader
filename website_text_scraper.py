@@ -3,7 +3,9 @@ import requests
 import sqlite3
 
 
-def get_kanji(url, kanji_count, unique_kanji, known_kanji, known_kanji_count):
+def get_kanji(
+    url, kanji_count, unique_kanji, known_kanji, known_kanji_count, unknown_kanji
+):
     db = sqlite3.connect("kanji.db")
     db.text_factory = bytes
     mycursor = db.cursor()
@@ -12,12 +14,24 @@ def get_kanji(url, kanji_count, unique_kanji, known_kanji, known_kanji_count):
     soup = BeautifulSoup(page.content, "html.parser")
 
     return parse_text(
-        mycursor, soup, kanji_count, unique_kanji, known_kanji, known_kanji_count
+        mycursor,
+        soup,
+        kanji_count,
+        unique_kanji,
+        known_kanji,
+        known_kanji_count,
+        unknown_kanji,
     )
 
 
 def parse_text(
-    mycursor, soup, kanji_count, unique_kanji, known_kanji, known_kanji_count
+    mycursor,
+    soup,
+    kanji_count,
+    unique_kanji,
+    known_kanji,
+    known_kanji_count,
+    unknown_kanji,
 ):
     for character in soup.text:
         try:
@@ -26,6 +40,9 @@ def parse_text(
             level = result[1].decode("utf-8")
         except:
             continue
+
+        if character not in known_kanji:
+            unknown_kanji.add(character)
 
         if level == "JLPT N5":
             kanji_count[0] += 1
