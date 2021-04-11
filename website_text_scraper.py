@@ -41,31 +41,38 @@ def parse_text(
         except:
             continue
 
-        if character not in known_kanji:
-            unknown_kanji.add(character)
-
         if level == "JLPT N5":
             kanji_count[0] += 1
             if character in known_kanji:
                 known_kanji_count[0] += 1
+            else:
+                unknown_kanji["N5"].add(character)
             unique_kanji["N5"].add(character)
         if level == "JLPT N4":
             kanji_count[1] += 1
             if character in known_kanji:
                 known_kanji_count[1] += 1
+            else:
+                unknown_kanji["N4"].add(character)
             unique_kanji["N4"].add(character)
         if level == "JLPT N3":
             kanji_count[2] += 1
             if character in known_kanji:
                 known_kanji_count[2] += 1
+            else:
+                unknown_kanji["N3"].add(character)
             unique_kanji["N3"].add(character)
         if level == "JLPT N2":
             kanji_count[3] += 1
             if character in known_kanji:
                 known_kanji_count[3] += 1
+            else:
+                unknown_kanji["N2"].add(character)
             unique_kanji["N2"].add(character)
         if level == "JLPT N1":
             kanji_count[4] += 1
             if character in known_kanji:
                 known_kanji_count[4] += 1
+            else:
+                unknown_kanji["N1"].add(character)
             unique_kanji["N1"].add(character)
