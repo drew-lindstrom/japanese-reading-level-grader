@@ -4,6 +4,9 @@ from prev_serach import update_prev_search_db, get_all_time_total
 
 
 def print_count(kanji_count, total):
+
+    """Prints the number of kanji in each JLPT level and percentage of said kanji out of total count."""
+
     print(f"Total Number of Characters: {total}")
     print(f"N5: {kanji_count[0]} ({round((kanji_count[0]/total), 4)*100}%)")
     print(f"N4: {kanji_count[1]} ({round((kanji_count[1]/total), 4)*100}%)")
@@ -14,6 +17,9 @@ def print_count(kanji_count, total):
 
 
 def print_unique_count(unique_kanji, unique_total):
+
+    """Prints the number of unique kanji in each JLPT level and percentage of said kanji out of total unique count."""
+
     print(f"Total Number of Unique Characters: {unique_total}")
     print(
         f"N5: {len(unique_kanji['N5'])} ({round((len(unique_kanji['N5'])/unique_total), 4)*100}%)"
@@ -34,6 +40,9 @@ def print_unique_count(unique_kanji, unique_total):
 
 
 def print_reading_ability(kanji_count, known_kanji_count):
+
+    """Prints number and percentage of known kanji out of number of kanji per JLPT level. Does not include unique kanji."""
+
     print(
         f"N5: {known_kanji_count[0]} out of {kanji_count[0]} known. ({round((known_kanji_count[0]/kanji_count[0]), 4)* 100}%)"
     )
@@ -52,6 +61,9 @@ def print_reading_ability(kanji_count, known_kanji_count):
 
 
 def print_all_time_total(all_time_total):
+
+    """Prints the kanji count for each JLPT level for all previous valid searches."""
+
     total = 0
     for level in all_time_total[0]:
         total += level
@@ -66,14 +78,19 @@ def print_all_time_total(all_time_total):
 
 
 def print_unknown_kanji(unknown_kanji):
+
+    """Prints kanji from URL that are not in known_kanji by JLPT level."""
+
     print("Unknown Kanji:")
     print()
-    for kanji in unknown_kanji:
-        print(kanji)
+    print("JLPT N5: ")
     print()
 
 
 def get_total(kanji_count):
+
+    """Retrieves total number of kanji from URL."""
+
     total = 0
 
     for count in kanji_count:
@@ -83,6 +100,9 @@ def get_total(kanji_count):
 
 
 def get_unique_total(unique_kanji):
+
+    """Retrieves total number of unique kanji from URL."""
+
     unique_total = 0
 
     for key in unique_kanji:
@@ -92,6 +112,9 @@ def get_unique_total(unique_kanji):
 
 
 def reset_unique_kanji(unique_kanji):
+
+    """Resets unique kanji count. To be used before each URL search."""
+
     unique_kanji["N5"] = set()
     unique_kanji["N4"] = set()
     unique_kanji["N3"] = set()
@@ -100,6 +123,9 @@ def reset_unique_kanji(unique_kanji):
 
 
 def reset_kanji_count(kanji_count):
+
+    """Resets kanji count. To be used before each URL search."""
+
     for level in range(len(kanji_count)):
         kanji_count[level] = 0
 
@@ -113,7 +139,7 @@ def main():
     kanji_count = [0, 0, 0, 0, 0]
     known_kanji_count = [0, 0, 0, 0, 0]
     known_kanji = get_known_kanji()
-    unknown_kanji = set()
+    unknown_kanji = {"N5": set(), "N4": set(), "N3": set(), "N2": set(), "N1": set()}
 
     while True:
         while True:
