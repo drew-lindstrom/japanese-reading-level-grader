@@ -1,10 +1,10 @@
 + Fix character encoding when parsing from websites
 + Update database to store result from invidual urls and calculate total numbers
-- Add UI
++ Add UI
 / Update UI to display graphs of results
 + Add option to select already known kanji
 + Implement kanji analaysis to tell you how much of the webpage you could read based on known kanji
-- Have an option to return not know kanji in the webpage
++ Have an option to return not know kanji in the webpage
 - Implement MySQL
 / Create web framework
 - Testing
