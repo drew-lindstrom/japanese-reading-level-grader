@@ -83,7 +83,35 @@ def print_unknown_kanji(unknown_kanji):
 
     print("Unknown Kanji:")
     print()
+
     print("JLPT N5: ")
+    print()
+    for kanji in unknown_kanji["N5"]:
+        print(kanji)
+    print()
+
+    print("JLPT N4: ")
+    print()
+    for kanji in unknown_kanji["N4"]:
+        print(kanji)
+    print()
+
+    print("JLPT N3: ")
+    print()
+    for kanji in unknown_kanji["N3"]:
+        print(kanji)
+    print()
+
+    print("JLPT N2: ")
+    print()
+    for kanji in unknown_kanji["N2"]:
+        print(kanji)
+    print()
+
+    print("JLPT N1: ")
+    print()
+    for kanji in unknown_kanji["N1"]:
+        print(kanji)
     print()
 
 
