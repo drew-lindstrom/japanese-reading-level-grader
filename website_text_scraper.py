@@ -8,7 +8,6 @@ def get_kanji(
 ):
     """Set up for parse_text(). Creates connections to kanji.db (List of kanji by JLPT level) and
     to beautiful soup webscraper."""
-
     db = sqlite3.connect("kanji.db")
     db.text_factory = bytes
     mycursor = db.cursor()
@@ -38,7 +37,6 @@ def parse_text(
 ):
     """Parses HTML of URL looking for characters that are in kanji.db.
     Updates kanji_count, known_kanji_count, and unknown_kanji by JLPT level for each character."""
-
     for character in soup.text:
         try:
             mycursor.execute("SELECT * FROM kanji_table WHERE kanji=?", character)

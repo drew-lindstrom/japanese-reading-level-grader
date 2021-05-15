@@ -1,7 +1,7 @@
 from website_text_scraper import parse_text, get_kanji
 from known_kanji import get_known_kanji
 from prev_serach import update_prev_search_db, get_all_time_total
-
+from util import *
 
 # TODO: Rounding error
 # TODO: Updated unknown kanji be JLPT level.
