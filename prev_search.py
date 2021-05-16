@@ -18,12 +18,13 @@ def update_prev_search_table(url, kanji_count, table="prev_search"):
         kanji_count[4],
     )
     try:
-        mycursor.execute("INSERT INTO prev_search VALUES (?, ?, ?, ?, ?, ?)", i)
+        str1 = "INSERT INTO "
+        str2 = " VALUES (?, ?, ?, ?, ?, ?)"
+        mycursor.execute(str1 + table + str2, i)
     except Exception:
-        mycursor.execute(
-            "UPDATE prev_search SET JLPT_5 = (?), JLPT_4 = (?), JLPT_3 = (?), JLPT_2 = (?), JLPT_1 = (?) WHERE url = (?)",
-            i,
-        )
+        str1 = "UPDATE "
+        str2 = " SET JLPT_5 = (?), JLPT_4 = (?), JLPT_3 = (?), JLPT_2 = (?), JLPT_1 = (?) WHERE url = (?)"
+        mycursor.execute(str1 + table + str2, i)
     db.commit()
 
 
