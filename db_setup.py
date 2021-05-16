@@ -42,7 +42,6 @@ def swap_key_and_value(kanji_dict):
 
 
 def create_kanji_list(new_dict, kanji_list):
-    # TODO: This function probably isn't needed/can be simplified with previous two functions.
     """Utility function to change dictionary contain kanji into a list."""
     for key in new_dict:
         kanji_list.append((key, new_dict[key]))
@@ -59,26 +58,38 @@ def create_prev_search_table():
 
 def create_kanji_table():
     """Creates mysql database table for each kanji with its corresponding JLPT level."""
-    mycursor.execute("CREATE TABLE kanji_table (kanji text, level text)")
+    mycursor.execute("CREATE TABLE kanji_table (kanji text UNIQUE, level text)")
 
 
-def update_kanji_table(kanji_list):
+def populate_kanji_table(kanji_list):
     """Updates kanji_table database with kanji and JLPT level pairs from kanji_list."""
     mycursor.executemany("INSERT INTO kanji_table VALUES (?, ?)", kanji_list)
     db.commit()
 
 
-kanji_dict = {}
-kanji_list = []
+def clear_kanji_table():
+    """Utility funciton that clears kanji_table."""
+    mycursor.execute("DELETE FROM kanji_table")
+    db.commit()
+
+
+def create_database():
+    """Gathers list of kanji by level from provided URL, creates kanji_table and prev_search_table
+    database pages, and populates kanji_table with the full list of kanji with corresponding level."""
+    kanji_dict = {}
+    kanji_list = []
+
+    get_kanji_dict(kanji_dict)
+    new_dict = swap_key_and_value(kanji_dict)
+    create_kanji_list(new_dict, kanji_list)
+
+    create_prev_search_table()
+    create_kanji_table()
+    populate_kanji_table(kanji_list)
+
 
 db = sqlite3.connect("kanji.db")
 mycursor = db.cursor()
 
-
-# get_kanji_dict(kanji_dict)
-# new_dict = swap_key_and_value(kanji_dict)
-# create_kanji_list(new_dict, kanji_list)
-
-# create_prev_search_table()
-# create_kanji_table()
-update_kanji_table(kanji_list)
+# clear_kanji_table()
+create_database()
