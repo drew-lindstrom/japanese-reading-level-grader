@@ -1,13 +1,11 @@
 import sqlite3
 
 
-def update_prev_search_db(url, kanji_count):
-
+def update_prev_search_table(url, kanji_count, table="prev_search"):
     """Updates database containing past searches. Searches are oraganized by URL
     and total count for each kanji level is recorded. Unique kanji is not recorded.
     Duplicate URLs can not exist and will update already existing identical URLs.
     Websites with no kanji are not tracked."""
-
     db = sqlite3.connect("kanji.db")
     mycursor = db.cursor()
 
@@ -30,10 +28,8 @@ def update_prev_search_db(url, kanji_count):
 
 
 def get_all_time_total():
-
     """Returns a list containing total count of kanji for each JLPT level for every
     unique URL in the previous search database."""
-
     db = sqlite3.connect("kanji.db")
     mycursor = db.cursor()
     mycursor.execute(
