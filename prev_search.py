@@ -28,12 +28,13 @@ def update_prev_search_table(url, kanji_count, table="prev_search"):
     db.commit()
 
 
-def get_all_time_total():
+def get_all_time_total(table="prev_search"):
     """Returns a list containing total count of kanji for each JLPT level for every
     unique URL in the previous search database."""
     db = sqlite3.connect("kanji.db")
     mycursor = db.cursor()
-    mycursor.execute(
-        "SELECT SUM(JLPT_5), SUM(JLPT_4), SUM(JLPT_3), SUM(JLPT_2), SUM(JLPT_1) FROM prev_search"
+    str1 = (
+        "SELECT SUM(JLPT_5), SUM(JLPT_4), SUM(JLPT_3), SUM(JLPT_2), SUM(JLPT_1) FROM "
     )
+    mycursor.execute(str1 + table)
     return list(mycursor)
