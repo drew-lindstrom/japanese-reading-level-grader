@@ -17,7 +17,7 @@ def get_kanji(
 
     return parse_text(
         mycursor,
-        soup,
+        soup.text,
         kanji_count,
         unique_kanji,
         known_kanji,
@@ -28,7 +28,7 @@ def get_kanji(
 
 def parse_text(
     mycursor,
-    soup,
+    soup_text,
     kanji_count,
     unique_kanji,
     known_kanji,
@@ -37,7 +37,7 @@ def parse_text(
 ):
     """Parses HTML of URL looking for characters that are in kanji.db.
     Updates kanji_count, known_kanji_count, and unknown_kanji by JLPT level for each character."""
-    for character in soup.text:
+    for character in soup_text:
         try:
             mycursor.execute("SELECT * FROM kanji_table WHERE kanji=?", character)
             result = mycursor.fetchone()
