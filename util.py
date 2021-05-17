@@ -1,11 +1,11 @@
 def print_count(kanji_count, total):
     """Prints the number of kanji in each JLPT level and percentage of said kanji out of total count."""
     print(f"Total Number of Characters: {total}")
-    print(f"N5: {kanji_count[0]} ({round((kanji_count[0]/total), 4)*100}%)")
-    print(f"N4: {kanji_count[1]} ({round((kanji_count[1]/total), 4)*100}%)")
-    print(f"N3: {kanji_count[2]} ({round((kanji_count[2]/total), 4)*100}%)")
-    print(f"N2: {kanji_count[3]} ({round((kanji_count[3]/total), 4)*100}%)")
-    print(f"N1: {kanji_count[4]} ({round((kanji_count[4]/total), 4)*100}%)")
+    print(f"N5: {kanji_count[0]} ({str(round((kanji_count[0]/total), 4)*100)}%)")
+    print(f"N4: {kanji_count[1]} ({str(round((kanji_count[1]/total), 4)*100)}%)")
+    print(f"N3: {kanji_count[2]} ({str(round((kanji_count[2]/total), 4)*100)}%)")
+    print(f"N2: {kanji_count[3]} ({str(round((kanji_count[3]/total), 4)*100)}%)")
+    print(f"N1: {kanji_count[4]} ({str(round((kanji_count[4]/total), 4)*100)}%)")
     print()
 
 
@@ -13,19 +13,19 @@ def print_unique_count(unique_kanji, unique_total):
     """Prints the number of unique kanji in each JLPT level and percentage of said kanji out of total unique count."""
     print(f"Total Number of Unique Characters: {unique_total}")
     print(
-        f"N5: {len(unique_kanji['N5'])} ({round((len(unique_kanji['N5'])/unique_total), 4)*100}%)"
+        f"N5: {len(unique_kanji['N5'])} ({str(round((len(unique_kanji['N5'])/unique_total), 4)*100)}%)"
     )
     print(
-        f"N4: {len(unique_kanji['N4'])} ({round((len(unique_kanji['N4'])/unique_total), 4)*100}%)"
+        f"N4: {len(unique_kanji['N4'])} ({str(round((len(unique_kanji['N4'])/unique_total), 4)*100)}%)"
     )
     print(
-        f"N3: {len(unique_kanji['N3'])} ({round((len(unique_kanji['N3'])/unique_total), 4)*100}%)"
+        f"N3: {len(unique_kanji['N3'])} ({str(round((len(unique_kanji['N3'])/unique_total), 4)*100)}%)"
     )
     print(
-        f"N2: {len(unique_kanji['N2'])} ({round((len(unique_kanji['N2'])/unique_total), 4)*100}%)"
+        f"N2: {len(unique_kanji['N2'])} ({str(round((len(unique_kanji['N2'])/unique_total), 4)*100)}%)"
     )
     print(
-        f"N1: {len(unique_kanji['N1'])} ({round((len(unique_kanji['N1'])/unique_total), 4)*100}%)"
+        f"N1: {len(unique_kanji['N1'])} ({str(round((len(unique_kanji['N1'])/unique_total), 4)*100)}%)"
     )
     print()
 
@@ -33,20 +33,21 @@ def print_unique_count(unique_kanji, unique_total):
 def print_reading_ability(kanji_count, known_kanji_count):
     """Prints number and percentage of known kanji out of number of kanji per JLPT level. Does not include unique kanji."""
     print(
-        f"N5: {known_kanji_count[0]} out of {kanji_count[0]} known. ({round((known_kanji_count[0]/kanji_count[0]), 4)* 100}%)"
+        f"N5: {known_kanji_count[0]} out of {kanji_count[0]} known. ({str(round((known_kanji_count[0]/kanji_count[0]), 4)* 100)}%)"
     )
     print(
-        f"N5: {known_kanji_count[1]} out of {kanji_count[1]} known. ({round((known_kanji_count[1]/kanji_count[1]), 4)* 100}%)"
+        f"N5: {known_kanji_count[1]} out of {kanji_count[1]} known. ({str(round((known_kanji_count[1]/kanji_count[1]), 4)* 100)}%)"
     )
     print(
-        f"N5: {known_kanji_count[2]} out of {kanji_count[2]} known. ({round((known_kanji_count[2]/kanji_count[2]), 4)* 100}%)"
+        f"N5: {known_kanji_count[2]} out of {kanji_count[2]} known. ({str(round((known_kanji_count[2]/kanji_count[2]), 4)* 100)}%)"
     )
     print(
-        f"N5: {known_kanji_count[3]} out of {kanji_count[3]} known. ({round((known_kanji_count[3]/kanji_count[3]), 4)* 100}%)"
+        f"N5: {known_kanji_count[3]} out of {kanji_count[3]} known. ({str(round((known_kanji_count[3]/kanji_count[3]), 4)* 100)}%)"
     )
     print(
-        f"N5: {known_kanji_count[4]} out of {kanji_count[4]} known. ({round((known_kanji_count[4]/kanji_count[4]), 4)* 100}%)"
+        f"N5: {known_kanji_count[4]} out of {kanji_count[4]} known. ({str(round((known_kanji_count[4]/kanji_count[4]), 4)* 100)}%)"
     )
+    print()
 
 
 def print_all_time_total(all_time_total):
