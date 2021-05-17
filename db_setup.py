@@ -92,4 +92,5 @@ db = sqlite3.connect("kanji.db")
 mycursor = db.cursor()
 
 # clear_kanji_table()
-create_database()
+# create_database()
+# create_prev_search_table()

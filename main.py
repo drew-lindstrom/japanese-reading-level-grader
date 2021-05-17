@@ -47,7 +47,7 @@ def main():
                 continue
             break
 
-        update_prev_search_db(url, kanji_count)
+        update_prev_search_table(url, kanji_count)
 
         total = get_total(kanji_count)
         unique_total = get_unique_total(unique_kanji)
