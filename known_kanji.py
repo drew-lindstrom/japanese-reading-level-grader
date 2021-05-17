@@ -1,11 +1,15 @@
 import sqlite3
 
 
-def get_known_kanji():
+def get_known_kanji(text=None):
     """Parses a text document containing list of user's known kanji.
     Will only add characters found in kanji.db to known_kanji list."""
     known_kanji = set()
-    f = open("Known_Kanji.txt", "r")
+
+    if text == None:
+        f = open("Known_Kanji.txt", "r")
+    else:
+        f = text
 
     db = sqlite3.connect("kanji.db")
     mycursor = db.cursor()
@@ -17,6 +21,7 @@ def get_known_kanji():
             if result:
                 known_kanji.add(result[0])
 
-    f.close()
+    if text == None:
+        f.close()
 
     return known_kanji
