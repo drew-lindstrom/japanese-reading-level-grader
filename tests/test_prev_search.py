@@ -41,3 +41,13 @@ class TestPrevSearch:
         ).fetchone() == ("testURL", 5, 5, 5, 5, 5)
         assert len(list(cursor.execute("SELECT * FROM temp_prev_search"))) == 1
         self.delete_temp_prev_search_table(cursor)
+
+    def test_get_all_time_total(
+        self, connect_to_temp_prev_search_table, create_temp_prev_search_table
+    ):
+        """Test to make sure prev_search table returns the correct total for each level of kanji from all
+        valid previous searches."""
+        cursor = connect_to_temp_prev_search_table
+        update_prev_search_table("testURL", [1, 1, 1, 1, 1], "temp_prev_search")
+        update_prev_search_table("testURL2", [1, 2, 3, 4, 5], "temp_prev_search")
+        assert get_all_time_total("temp_prev_search") == [(2, 3, 4, 5, 6)]
