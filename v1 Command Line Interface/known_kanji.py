@@ -7,7 +7,7 @@ def get_known_kanji(text=None):
     known_kanji = set()
 
     if text == None:
-        f = open("Known_Kanji.txt", "r")
+        f = open("known_kanji.txt", "r")
     else:
         f = text
 
