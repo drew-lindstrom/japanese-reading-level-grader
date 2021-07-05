@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import sqlite3
 from kanjiDictionary import kanjiDict
-from models import Url
+from .models import Url
 
 
 class UrlDataObject:
