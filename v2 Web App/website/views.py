@@ -1,9 +1,9 @@
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user
-from .models import Note
+from .models import Url
 from . import db
 import json
-from textScraper import getUrlData
+from .textScraper import getUrlData
 
 views = Blueprint("views", __name__)
 
@@ -27,12 +27,12 @@ def home():
 
 @views.route("/delete-note", methods=["POST"])
 def delete_note():
-    note = json.loads(request.data)
-    noteId = note["noteId"]
-    note = Note.query.get(noteId)
-    if note:
-        if note.user_id == current_user.id:
-            db.session.delete(note)
+    url = json.loads(request.data)
+    urlId = url["urlId"]
+    url = Url.query.get(urlId)
+    if url:
+        if url.user_id == current_user.id:
+            db.session.delete(url)
             db.session.commit()
 
     return jsonify({})
