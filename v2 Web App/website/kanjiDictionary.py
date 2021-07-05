@@ -18,40 +18,40 @@ from bs4 import BeautifulSoup
 #         except:
 #             continue
 
-#         kanji_list = []
+#         kanjiList = []
 
 #         kanjiList = outputList.find("div", class_="kanjiList")
 
 #         for kanji in kanjiList:
 #             try:
-#                 kanji_list.append(kanji.text)
+#                 kanjiList.append(kanji.text)
 #             except:
 #                 continue
 
-#         kanji_dict[name] = kanji_list
+#         kanjiDict[name] = kanjiList
 
 
 # def swap_key_and_value(kanji_dict):
 #     """Utility function to swap kanji and JLPT level in temporary dictionary."""
-#     new_dict = {}
-#     for key in kanji_dict.keys():
-#         for character in kanji_dict[key]:
-#             new_dict[character] = key
-#     return new_dict
+#     newDict = {}
+#     for key in kanjiDict.keys():
+#         for character in kanjiDict[key]:
+#             newDict[character] = key
+#     return newDict
 
 
-# kanji_dict = {}
+# kanjiDict = {}
 
-# get_kanji_dict(kanji_dict)
-# kanji_dict = swap_key_and_value(kanji_dict)
+# getKanjiDict(kanji_dict)
+# kanjiDict = swapKeyAndValue(kanji_dict)
 
 
 # with open("readme.txt", "w") as f:
 
-#     for key, value in kanji_dict.items():
+#     for key, value in kanjiDict.items():
 #         f.write(f'"{key}": "{value}", ')
 
-kanji_dict = {
+kanjiDict = {
     "一": "JLPT N5",
     "七": "JLPT N5",
     "万": "JLPT N5",
