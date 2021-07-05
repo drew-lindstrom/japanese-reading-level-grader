@@ -1,0 +1,35 @@
+.pyc
+__pycache__/db_setup.cpython-39.pyc
+__pycache__/get_known_kanji.cpython-39.pyc
+__pycache__/kanji_dict.cpython-39.pyc
+__pycache__/known_kanji.cpython-39.pyc
+__pycache__/main.cpython-39.pyc
+__pycache__/prev_search.cpython-39.pyc
+__pycache__/prev_serach.cpython-39.pyc
+__pycache__/util.cpython-39.pyc
+__pycache__/website_text_scraper.cpython-39.pyc
+tests/__pycache__/test_db_setup.cpython-39-pytest-6.2.1.pyc
+tests/__pycache__/test_known_kanji.cpython-39-pytest-6.2.1.pyc
+tests/__pycache__/test_prev_search.cpython-39-pytest-6.2.1.pyc
+tests/__pycache__/test_util.cpython-39-pytest-6.2.1.pyc
+tests/__pycache__/test_website_text_scraper.cpython-39-pytest-6.2.1.pyc
+__pycache__/kanji_dict.cpython-39.pyc
+kanji.db
+known_kanji.txt
+__pycache__/kanji_dict.cpython-39.pyc
+v2/website/__pycache__/__init__.cpython-39.pyc
+v1/to_do_list
+v2/website/__pycache__/auth.cpython-39.pyc
+v2/website/__pycache__/models.cpython-39.pyc
+v2/website/__pycache__/views.cpython-39.pyc
+__pycache__/kanji_dict.cpython-39.pyc
+__pycache__/kanji_dict.cpython-39.pyc
+.DS_Store
+__pycache__/kanji_dict.cpython-39.pyc
+v1 Command Line Interface/to_do_list
+__pycache__/kanji_dict.cpython-39.pyc
+v1 Command Line Interface/__pycache__/known_kanji.cpython-39.pyc
+v1 Command Line Interface/__pycache__/prev_search.cpython-39.pyc
+v1 Command Line Interface/__pycache__/util.cpython-39.pyc
+v1 Command Line Interface/__pycache__/website_text_scraper.cpython-39.pyc
+__pycache__/kanji_dict.cpython-39.pyc
