@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import sqlite3
-from kanjiDictionary import kanjiDict
+from .kanjiDictionary import kanjiDict
 from .models import Url
 
 
@@ -26,12 +26,13 @@ class UrlDataObject:
         self.readPercent = 0
 
 
-def getUrlData(url):
+def getUrlData(url, knownKanjiString):
     data = getUrlDataSetUp()
+    initializeKnownKanji(data, knownKanjiString)
     parseTextSetUp(url, data)
     calculateReadPercentage(data)
-    dataModel = createNewDataModel(data, url)
-    return dataModel
+    urlModel = createNewUrlModel(data, url)
+    return urlModel
 
 
 def getUrlDataSetUp():
@@ -40,8 +41,10 @@ def getUrlDataSetUp():
     return data
 
 
-def initializeKnownKanji(data):
-    pass
+def initializeKnownKanji(data, knownKanjiString):
+    for character in knownKanjiString:
+        if character in kanjiDict:
+            data.knownKanji.add(character)
 
 
 def parseTextSetUp(url, data):
@@ -78,7 +81,7 @@ def calculateReadPercentage(data):
     return knownKanjiTotal / totalKanjiTotal
 
 
-def createNewDataModel(data, url):
+def createNewUrlModel(data, url):
     model = Url()
     model.url = url
     totalN5 = data.totalKanjiCount["JLPT N5"]
