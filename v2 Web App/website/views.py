@@ -23,6 +23,7 @@ def home():
                 flash("Note is too short!", category="error")
             else:
                 newUrl = getUrlData(url, knownKanji)
+                newUrl.user_id = current_user.id
                 db.session.add(newUrl)
                 db.session.commit()
                 flash("URL added!", category="success")
@@ -30,7 +31,7 @@ def home():
     return render_template("home.html", user=current_user)
 
 
-@views.route("/delete-note", methods=["POST"])
+@views.route("/delete-url", methods=["POST"])
 def delete_note():
     url = json.loads(request.data)
     urlId = url["urlId"]
@@ -39,5 +40,6 @@ def delete_note():
         if url.user_id == current_user.id:
             db.session.delete(url)
             db.session.commit()
+            flash("URL deleted!", category="success")
 
     return jsonify({})

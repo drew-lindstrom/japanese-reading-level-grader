@@ -4,7 +4,7 @@
   {% for data in user.url %}
   <li class="list-group-item">
     {{ data.url }}
-    <button type="button" class="close" onClick="deleteNote({{ url.id }})">
+    <button type="button" class="close" onClick="deleteUrl({{ data.id }})">
       <span aria-hidden="true">&times;</span>
     </button>
   </li>
