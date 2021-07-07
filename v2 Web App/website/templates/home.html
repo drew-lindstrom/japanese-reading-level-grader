@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content %}
-<h1 align="center">Notes</h1>
-<ul class="list-group list-group-flush" id="notes">
+<h1 align="center">Japanese Kanji Reading Level Grader</h1>
+<ul class="list-group list-group-flush" id="user">
   {% for data in user.url %}
   <li class="list-group-item">
     {{ data.url }}
@@ -11,12 +11,14 @@
   {% endfor %}
 </ul>
 <form method="POST">
+  <p>URL:</p>
   <textarea name="url" id="url" class="form-control"></textarea>
   <br />
+  <p>Known Kanji:</p>
   <textarea name="knownKanji" id="knownKanji" class="form-control"></textarea>
   <br />
   <div align="center">
-    <button type="submit" class="btn btn-primary">Enter URL</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
   </div>
 </form>
 {% endblock %}
