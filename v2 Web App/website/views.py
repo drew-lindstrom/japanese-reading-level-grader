@@ -6,21 +6,27 @@ import json
 from .textScraper import getUrlData
 
 views = Blueprint("views", __name__)
+knownKanji = ""
 
 
 @views.route("/", methods=["GET", "POST"])
 @login_required
 def home():
     if request.method == "POST":
-        url = request.form.get("url")
+        if request.form.get("knownKanji"):
+            pass
+            knownKanji += request.form.get("knownKanji")
 
-        if len(url) < 1:
-            flash("Note is too short!", category="error")
-        else:
-            newUrl = getUrlData(url)
-            db.session.add(newUrl)
-            db.session.commit()
-            flash("URL added!", category="success")
+        if request.form.get("url"):
+            url = request.form.get("url")
+
+            if len(url) < 1:
+                flash("Note is too short!", category="error")
+            else:
+                newUrl = getUrlData(url, knownKanji)
+                db.session.add(newUrl)
+                db.session.commit()
+                flash("URL added!", category="success")
 
     return render_template("home.html", user=current_user)
 
