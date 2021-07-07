@@ -77,7 +77,7 @@ def calculateReadPercentage(data):
     for value in data.knownKanjiCount.values():
         knownKanjiTotal += value
 
-    data.readPercent = knownKanjiTotal / totalKanjiTotal
+    data.readPercent = int(knownKanjiTotal / totalKanjiTotal * 100)
 
 
 def createNewUrlModel(data, url):
