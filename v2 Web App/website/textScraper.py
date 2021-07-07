@@ -28,7 +28,7 @@ class UrlDataObject:
 
 def getUrlData(url, knownKanjiString):
     data = getUrlDataSetUp()
-    initializeKnownKanji(data, knownKanjiString)
+    initializeKnownKanjiDictionary(data, knownKanjiString)
     parseTextSetUp(url, data)
     calculateReadPercentage(data)
     urlModel = createNewUrlModel(data, url)
@@ -37,11 +37,10 @@ def getUrlData(url, knownKanjiString):
 
 def getUrlDataSetUp():
     data = UrlDataObject()
-    initializeKnownKanji(data)
     return data
 
 
-def initializeKnownKanji(data, knownKanjiString):
+def initializeKnownKanjiDictionary(data, knownKanjiString):
     for character in knownKanjiString:
         if character in kanjiDict:
             data.knownKanji.add(character)
@@ -78,22 +77,22 @@ def calculateReadPercentage(data):
     for value in data.knownKanjiCount.values():
         knownKanjiTotal += value
 
-    return knownKanjiTotal / totalKanjiTotal
+    data.readPercent = knownKanjiTotal / totalKanjiTotal
 
 
 def createNewUrlModel(data, url):
     model = Url()
-    model.url = url
-    totalN5 = data.totalKanjiCount["JLPT N5"]
-    totalN4 = data.totalKanjiCount["JLPT N4"]
-    totalN3 = data.totalKanjiCount["JLPT N3"]
-    totalN2 = data.totalKanjiCount["JLPT N2"]
-    totalN1 = data.totalKanjiCount["JLPT N1"]
-    knownN5 = data.knownKanjiCount["JLPT N5"]
-    knownN4 = data.knownKanjiCount["JLPT N4"]
-    knownN3 = data.knownKanjiCount["JLPT N3"]
-    knownN2 = data.knownKanjiCount["JLPT N2"]
-    knownN1 = data.knownKanjiCount["JLPT N1"]
-    unknownKanji = str(data.unknownKanji)
-    readPercentage = data.readPercent
+    model.url = str(url)
+    model.totalN5 = int(data.totalKanjiCount["JLPT N5"])
+    model.totalN4 = int(data.totalKanjiCount["JLPT N4"])
+    model.totalN3 = data.totalKanjiCount["JLPT N3"]
+    model.totalN2 = data.totalKanjiCount["JLPT N2"]
+    model.totalN1 = data.totalKanjiCount["JLPT N1"]
+    model.knownN5 = data.knownKanjiCount["JLPT N5"]
+    model.knownN4 = data.knownKanjiCount["JLPT N4"]
+    model.knownN3 = data.knownKanjiCount["JLPT N3"]
+    model.knownN2 = data.knownKanjiCount["JLPT N2"]
+    model.knownN1 = data.knownKanjiCount["JLPT N1"]
+    model.unknownKanji = str(data.unknownKanji)
+    model.readPercentage = data.readPercent
     return model

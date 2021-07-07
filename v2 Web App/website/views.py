@@ -6,7 +6,6 @@ import json
 from .textScraper import getUrlData
 
 views = Blueprint("views", __name__)
-knownKanji = ""
 
 
 @views.route("/", methods=["GET", "POST"])
@@ -14,7 +13,7 @@ knownKanji = ""
 def home():
     if request.method == "POST":
         if request.form.get("knownKanji"):
-            pass
+            knownKanji = ""
             knownKanji += request.form.get("knownKanji")
 
         if request.form.get("url"):
